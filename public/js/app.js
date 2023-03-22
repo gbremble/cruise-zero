@@ -40,6 +40,11 @@ const logout = async () => {
   }
 };
 
+// display a modal
+const modalSheet = new bootstrap.Modal(document.getElementById('modalSheet'), {
+  keyboard: false
+});
+
 /**
  * Retrieves the auth configuration from the server
  */
@@ -111,13 +116,19 @@ window.onload = async () => {
   const query = window.location.search;
   const shouldParseResult = query.includes("code=") && query.includes("state=");
 
-  const searchParams = new URLSearchParams(paramsString);
+  const searchParams = new URLSearchParams(query);
 
-  const modalSheet = new bootstrap.Modal("#modalSheet", options);
+  // const modalSheet = new bootstrap.Modal(document.getElementById('modalSheet'), {
+  //   keyboard: false
+  // });
+
+  // const block = () => modalSheet.show();
 
   if (searchParams.has("error")) {
     if (searchParams.get("error_description") === "email_not_verified") {
-      logout(); // do this from the modal
+      modalSheet.show();
+      console.log('email not verified; calling for a modal');
+      return;
     }
   }
 
