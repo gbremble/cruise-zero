@@ -111,6 +111,16 @@ window.onload = async () => {
   const query = window.location.search;
   const shouldParseResult = query.includes("code=") && query.includes("state=");
 
+  const searchParams = new URLSearchParams(paramsString);
+
+  const modalSheet = new bootstrap.Modal("#modalSheet", options);
+
+  if (searchParams.has("error")) {
+    if (searchParams.get("error_description") === "email_not_verified") {
+      logout(); // do this from the modal
+    }
+  }
+
   if (shouldParseResult) {
     console.log("> Parsing redirect");
     try {
