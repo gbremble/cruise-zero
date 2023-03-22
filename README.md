@@ -32,4 +32,4 @@ This version of the application uses an [Express](https://expressjs.com) server 
 $ npm run dev
 ```
 
-To stop the application, press <kbd><kbd>⌃</kbd> + <kbd>C</kbd></kbd>
+To stop the application, press <kbd>⌃C</kbd>.
